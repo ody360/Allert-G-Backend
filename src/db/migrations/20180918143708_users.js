@@ -5,7 +5,7 @@ exports.up = knex => {
     table.string('last_name', 50).notNullable()
     table.string('email', 100).notNullable()
     table.text('password').notNullable()
-    table.date('birthdate').notNullable()
+    table.string('birthdate').notNullable()
     table.string('sex', 5).notNullable()
     table.string('home_phone', 15).notNullable()
     table.string('cell_phone', 15).notNullable().defaultsTo('')

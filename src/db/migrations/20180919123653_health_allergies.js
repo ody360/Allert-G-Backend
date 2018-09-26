@@ -1,7 +1,6 @@
 
 exports.up = knex => {
   return knex.schema.createTable('health_allergies', table => {
-    table.increments()
     table.integer('health_id').notNullable()
     table
       .foreign('health_id')
