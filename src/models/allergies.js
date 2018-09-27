@@ -6,6 +6,15 @@ function getAllAllergies() {
   return db('allergies')
 }
 
+function addAllergy(name) {
+  return db('allergies')
+    .insert(name)
+    .returning('name')
+}
+
+
+
 module.exports = {
-	getAllAllergies,
+  getAllAllergies,
+  addAllergy
 }

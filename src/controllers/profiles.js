@@ -9,7 +9,7 @@ async function getAllProfiles(req, res, next) {
 
 async function getProfile(req, res, next) {
   try {
-    const data = await model.getProfile(req.params.profileId)
+    const data = await model.getFullProfile(req.params.profileId);
     res.status(200).json({
       data 
     })
