@@ -1,10 +1,15 @@
 const model = require('../models/allergies')
 
 async function getAllAllergies (req, res, next) {
-  const data = await model.getAllAllergies()
-  res.status(200).json({
-    data
-  })
+  try {
+    console.log('IN ACTIONS TO REQ ALL ALLERGIES: ')
+    const data = await model.getAllAllergies()
+    res.status(200).json({
+      data
+    })
+  } catch (e) {
+    console.log('Could not complete task', e)
+  }
 }
 
 async function addAllergy (req, res, next) {
@@ -16,7 +21,7 @@ async function addAllergy (req, res, next) {
   } catch (e) {
     next({
       status: 400,
-      error: 'Could not complete task'
+      error: `Could not complete. ${e}`
     })
   }
 }
@@ -36,6 +41,6 @@ async function addAllergy (req, res, next) {
 // }
 
 module.exports = {
-	getAllAllergies,
-	addAllergy,
-};
+  getAllAllergies,
+  addAllergy
+}

@@ -2,17 +2,15 @@ const { promisify } = require('util')
 const db = require('../db')
 const bcrypt = require('bcryptjs')
 
-function getAllAllergies() {
-  return db('allergies')
+function getAllAllergies () {
+  return db('allergies').select('id', 'allergy_name')
 }
 
-function addAllergy(name) {
+function addAllergy (allergy_name) {
   return db('allergies')
-    .insert(name)
-    .returning('name')
+    .insert(allergy_name)
+    .returning('*')
 }
-
-
 
 module.exports = {
   getAllAllergies,

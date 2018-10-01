@@ -13,18 +13,20 @@ function getProfile (id) {
 
 function getFullProfile (id) {
   return db('users')
-    .innerJoin('health', 'users.id', '=', 'health.users_id')
-    .innerJoin('medhx', 'medhx.id', '=', 'health.medhx_id')
-    .innerJoin('medication', 'medication.id', '=', 'health.medication_id')
-    .innerJoin('health_allergies', 'health.id', '=', 'health_id')
-    .innerJoin('allergies', 'allergies_id', '=', 'allergies.id')
-    .where('users_id', id).select('first_name', 'name')
-    
-    
+    .innerJoin('allergies', 'users.id', '=', 'allergies.users_id')
+    .innerJoin('medhx', 'users.id', '=', 'medhx.users_id')
+    .innerJoin('medication', 'users.id', '=', 'medication.users_id')   
+}
+
+function getProfilesAllergies(id) {
+  return db('users')
+    .innerJoin('allergies', 'users.id', '=', 'allergies.users_id')
+    .where('users.id', id).select('name')
 }
 
 module.exports = {
   getAllProfiles,
   getFullProfile,
+  getProfilesAllergies,
   getProfile
 }

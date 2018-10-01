@@ -1,24 +1,18 @@
-const table = 'allergies'
+const table = 'medhx'
 exports.seed = knex => {
   return knex(table)
     .insert([
       {
         id: 1,
-        name: 'peanut'
+        users_id: 1,
+        medhx: 'CHF, HTN, DM2, SLE'
 
       },
       {
         id: 2,
-        name: 'avocados'
+        users_id: 2,
+        medhx: 'PTSD, insomnia'
 
-      },
-      {
-        id: 3,
-        name: 'kryptonite'
-      },
-      {
-        id: 4,
-        name: 'bats'
       }
     ])
     .then(() => {
