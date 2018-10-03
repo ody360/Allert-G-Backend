@@ -12,9 +12,18 @@ async function getProfile (req, res, next) {
   try {
     const token = parseToken(req.headers.authorization)
     const userId = token.sub.id
+    let allergyResult = []
     
     const data = await model.getFullProfile(userId)
     console.log('GETTING PROFILE DATA: ', data)
+    for(let i of data) {
+      allergyResult.push(i.allergies_id)
+    }
+    data.push({
+      allergies_id: allergyResult
+    })
+
+    console.log('SENNDING DATA: ', data)
     res.status(200).json({
       data
     })
