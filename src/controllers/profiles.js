@@ -1,4 +1,5 @@
 const model = require('../models/profiles')
+const { parseToken } = require('../lib/auth')
 
 async function getAllProfiles (req, res, next) {
   const data = await model.getAllProfiles()
@@ -9,7 +10,11 @@ async function getAllProfiles (req, res, next) {
 
 async function getProfile (req, res, next) {
   try {
-    const data = await model.getFullProfile(req.params.profileId)
+    const token = parseToken(req.headers.authorization)
+    const userId = token.sub.id
+    
+    const data = await model.getFullProfile(userId)
+    console.log('GETTING PROFILE DATA: ', data)
     res.status(200).json({
       data
     })

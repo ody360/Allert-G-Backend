@@ -20,7 +20,7 @@ async function login (req, res, next) {
 
     res.json({ token })
   } catch (e) {
-    next({ status: 401, error: `Email or password is incorrect` })
+    next({ status: 401, error: e })
   }
 }
 

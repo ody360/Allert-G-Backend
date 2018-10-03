@@ -10,7 +10,7 @@ async function create({ password, ...body }) {
     .then(([response]) => response)
 }
 
-function login({ email, password }) {
+async function login({ email, password }) {
   return db('users')
     .where({ email })
     .then(async ([user]) => {
