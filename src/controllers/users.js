@@ -9,7 +9,7 @@ async function signup (req, res, next) {
 
     res.status(201).json({ token })
   } catch (e) {
-    next({ status: 400, error: `User could not be registered` })
+    next({ status: 400, error: `User could not be registered ${e}` })
   }
 }
 
