@@ -5,16 +5,17 @@ const db = require('../db')
 function createToken (id) {
   const sub = { sub: { id } }
   const options = { expiresIn: '100 days' }
-
+  
   return sign(sub, SECRET_KEY, options)
 }
 
-function parseToken (header) {
-  const token = header && header.split('Bearer ')[1]
+function parseToken (authToken) {
+  const token = authToken.split('Bearer ')[1];
   return verify(token, SECRET_KEY)
 }
 
 function isLoggedIn (req, res, next) {
+  
   try {
     parseToken(req.headers.authorization)
     next()

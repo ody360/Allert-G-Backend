@@ -3,10 +3,18 @@ const auth = require('../lib/auth')
 const { parseToken } = require('../lib/auth')
 
 async function signup (req, res, next) {
+  const allergies = req.body.allergies
   try {
     const response = await model.create(req.body)
     const token = auth.createToken(response.id)
-
+    
+    for (let i = 0; i < allergies.length; i++) {
+      if (allergies[i].checked === true) {
+        console.log('TRYING TO UPDATE USERALLERGIES WITH: ', allergies[i], response.id)
+        await model.addUserAllergies(response.id, allergies[i].id)
+        
+      }
+    }
     res.status(201).json({ token })
   } catch (e) {
     next({ status: 400, error: `User could not be registered ${e}` })
