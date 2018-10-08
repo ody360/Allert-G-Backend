@@ -19,7 +19,8 @@ function getFullProfile (id) {
 }
 
 function getProfilesAllergies(id) {
-  return db('users_allergies')
+  return db('allergies')
+    .innerJoin('users_allergies', 'allergies_id', '=', 'allergies.id')
     .where('users_id', id)
 }
 

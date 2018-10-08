@@ -10,7 +10,7 @@ function createToken (id) {
 }
 
 function parseToken (authToken) {
-  const token = authToken.split('Bearer ')[1];
+  const token = authToken.split('Bearer ')[1]
   return verify(token, SECRET_KEY)
 }
 

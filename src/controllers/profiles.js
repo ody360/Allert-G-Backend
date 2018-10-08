@@ -32,7 +32,11 @@ async function getProfileAllergies (req, res, next) {
   try {
     const token = parseToken(req.headers.authorization)
     const userId = token.sub.id
+    //console.log('IN GET USERPROFILEALLERGIES WITH TOKEN ID: ', userId)
     const data = await model.getProfilesAllergies(userId)
+
+    console.log('GETTING APROF ALERGY DATA:!!!!!!!!!!!!!!!!!', data)
+    
     res.status(200).json({
       data
     })

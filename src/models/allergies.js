@@ -12,7 +12,14 @@ function addAllergy (allergy_name) {
     .returning('*')
 }
 
+function getAllergy(allergyId) {
+  return db('allergies')
+  .select('*')
+  .where('allergies.id', allergyId)
+}
+
 module.exports = {
-  getAllAllergies,
-  addAllergy
+	getAllAllergies,
+	addAllergy,
+	getAllergy,
 }

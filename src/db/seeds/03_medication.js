@@ -13,6 +13,16 @@ exports.seed = knex => {
         users_id: 2,
         medication: 'acetominophen, amoxicillin'
 
+      },
+      {
+        id: 3,
+        users_id: 3,
+        medication: 'lorazapam'
+      },
+      {
+        id: 4,
+        users_id: 4,
+        medication: 'Dimethylphenidate'
       }
     ])
     .then(() => {

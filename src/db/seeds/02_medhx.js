@@ -13,6 +13,16 @@ exports.seed = knex => {
         users_id: 2,
         medhx: 'PTSD, insomnia'
 
+      },
+      {
+        id: 3,
+        users_id: 3,
+        medhx: 'PTSD, PMS'
+      },
+      {
+        id: 4,
+        users_id: 4,
+        medhx: ''
       }
     ])
     .then(() => {

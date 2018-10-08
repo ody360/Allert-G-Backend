@@ -26,21 +26,22 @@ async function addAllergy (req, res, next) {
   }
 }
 
-// async function getAllergy(req, res, next) {
-//   try {
-//     const data = await model.getAllergy(req.params.allergyId)
-//     res.status(200).json({
-//       data
-//     })
-//   } catch (err) {
-//     next({
-//       status: 404,
-//       message: err.message,
-//     })
-//   }
-// }
+async function getAllergy(req, res, next) {
+  try {
+    const data = await model.getAllergy(req.params.allergyId)
+    res.status(200).json({
+      data
+    })
+  } catch (err) {
+    next({
+      status: 404,
+      message: err.message,
+    })
+  }
+}
 
 module.exports = {
   getAllAllergies,
-  addAllergy
+  addAllergy,
+  getAllergy
 }

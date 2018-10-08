@@ -11,7 +11,17 @@ exports.seed = knex => {
         id: 2,
         party_id: 1,
         users_id: 2
-      }
+      },
+      {
+        id: 3,
+        party_id: 1,
+        users_id: 3
+      },
+      {
+        id: 4,
+        party_id: 1,
+        users_id: 4
+      },
 
     ])
     .then(() => {

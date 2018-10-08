@@ -13,7 +13,7 @@ app.use(require('cors')())
 app.use('/api/users', require('./routes/users'))
 app.use('/api/profiles', require('./routes/profiles'))
 app.use('/api/allergies', require('./routes/allergies'))
-// app.use('/api/party', require('./routes/party'))
+app.use('/api/party', require('./routes/party'))
 
 app.use((req, res, next) => {
   const status = 404
