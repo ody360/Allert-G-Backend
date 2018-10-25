@@ -3,7 +3,7 @@ exports.up = knex => {
     table.increments()
     table.string('first_name', 50).notNullable()
     table.string('last_name', 50).notNullable()
-    table.string('email', 100).notNullable()
+    table.string('email', 100).notNullable().unique()
     table.text('password').notNullable()
     table.string('birthdate').notNullable()
     table.string('sex', 5).notNullable()
@@ -11,6 +11,7 @@ exports.up = knex => {
     table.string('cell_phone', 15).notNullable().defaultsTo('')
     table.string('emergency1', 15).notNullable().defaultsTo('')
     table.string('emergency2', 15).notNullable().defaultsTo('')
+    table.string('img_URL').defaultsTo('')
     table.timestamps(true, true)
   })
 }

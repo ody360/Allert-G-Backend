@@ -4,9 +4,7 @@ exports.seed = knex => {
     .insert([
       {
         id: 1,
-        allergy_name: 'peanut',
-        
-
+        allergy_name: 'peanuts'
       },
       {
         id: 2,
@@ -23,6 +21,10 @@ exports.seed = knex => {
         id: 4,
         allergy_name: 'bats'
         
+      },
+      {
+        id: 5,
+        allergy_name: 'milk'
       }
     ])
     .then(() => {

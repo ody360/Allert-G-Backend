@@ -23,6 +23,11 @@ exports.seed = knex => {
         id: 4,
         users_id: 4,
         medhx: ''
+      },
+      {
+        id: 5,
+        users_id: 5,
+        medhx: 'HTN, IBS'
       }
     ])
     .then(() => {

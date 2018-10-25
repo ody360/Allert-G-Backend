@@ -23,6 +23,11 @@ exports.seed = knex => {
         id: 4,
         users_id: 4,
         medication: 'Dimethylphenidate'
+      },
+      {
+        id: 5,
+        users_id: 5,
+        medication: 'Losartanm Amlodipine'
       }
     ])
     .then(() => {

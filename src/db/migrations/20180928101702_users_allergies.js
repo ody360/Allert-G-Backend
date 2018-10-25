@@ -6,6 +6,7 @@ exports.up = knex => {
     table.foreign('users_id').references('users.id').onDelete('CASCADE')
     table.integer('allergies_id').notNullable()
     table.foreign('allergies_id').references('allergies.id').onDelete('CASCADE')
+    table.unique(['users_id', 'allergies_id'])
     table.timestamps(true, false)
   })
 }
