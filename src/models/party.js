@@ -3,7 +3,6 @@ const db = require('../db')
 const bcrypt = require('bcryptjs')
 
 function getParty (id) {
-  console.log('MODELS: ', id)
   return db('users_party')
     .select('*').innerJoin('party', 'party_id', '=', 'party.id')
     .where('users_id', id)
@@ -23,7 +22,6 @@ function getPartyMembers (id, partyId) {
     .where('users_id', id)
     .select('party_id')
     .then(function (res) {
-      
       return db('users_party')
         .where('party_id', partyId)
         .select('users_id')
@@ -54,30 +52,48 @@ function getMembersId (id) {
     })
 }
 
-function deleteParty(users_id, party_id) {
+function deleteParty (users_id, party_id) {
   return db('party')
-		.where('party.id', party_id)
-		.del()
-		.returning('*');
+    .where('party.id', party_id)
+    .del()
+    .returning('*')
 }
 
-function createParty(id, body) {
-  
+function createParty (body) {
+  const name = body.name
+  let partyData = []
   return db('party')
-    .insert({...body})
+    .insert({ name })
     .returning('id')
     .then((res) => {
-      console.log('PART ONE DONE: ', res)
+      const data = body.membersArray.map(p => {
+        partyData.push({ users_id: p, party_id: res[0] })
+      })
+      
       return db('users_party')
-        .insert({users_id: id, party_id: res[0]})
+        .insert(partyData)
         .returning('*')
     })
 }
 
+function updatePartyMembers(body, party_id,) {
+  let data = body.map((p) => {
+    return { party_id, users_id: p }
+  })
+  return db('users_party')
+		.where('party_id', party_id)
+		.del()
+		.then(res => {
+			return db('users_party')
+				.insert(data)
+				.returning('*');
+		});
+}
 
 module.exports = {
   getParty,
   getPartyMembers,
+  updatePartyMembers,
   getMembersId,
   getAllParties,
   deleteParty,

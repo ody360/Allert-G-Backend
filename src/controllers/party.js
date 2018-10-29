@@ -8,15 +8,11 @@ async function getParty (req, res, next) {
 
     const data = await model.getParty(userId)
 
-    console.log('PARTY TO RETURN IS:!!!!', data)
     res.status(200).json({
       data
     })
   } catch (err) {
-    next({
-      status: 404,
-      message: err.message
-    })
+    next({ status: 404, message: `Could not get parties ${err.message}` });
   }
 }
 
@@ -32,7 +28,7 @@ async function getAllParties (req, res, next) {
   } catch (err) {
     next({
       status: 404,
-      message: err.message
+      message: `Could not get all parties ${err.message}`
     })
   }
 }
@@ -87,12 +83,9 @@ async function deleteParty ( req, res, next) {
 
 async function createParty ( req, res, next ) {
   try {
-    const token = parseToken(req.headers.authorization)
-    const userId = token.sub.id
-
-    console.log('IN CREATE PARTY WITH INFO: ', userId, req.body)
-    const data = await model.createParty(userId, req.body)
-    console.log('RES:', res)
+   
+    const data = await model.createParty(req.body)
+    
     res.status(200).json({
       data
     })
@@ -100,14 +93,28 @@ async function createParty ( req, res, next ) {
     console.log('ERR:', e)
     next({
       status: 400,
-      error: `Group could not be added`
+      error: `Group could not be added: ${e}`
     })
   }
 }
 
+async function updatePartyMembers (req, res, next) {
+  try{ 
+    
+    const data = await model.updatePartyMembers(req.body, req.params.partyId)
+
+    res.status(200).json({
+      data
+    })
+
+  } catch (e) {
+    next({ status: 400, error: `Group could not be updated`, e })
+  }
+}
 module.exports = {
   getParty,
   getPartyMembers,
+  updatePartyMembers,
   getMembersId,
   getAllParties,
   deleteParty,

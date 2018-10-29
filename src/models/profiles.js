@@ -29,7 +29,7 @@ function postProfileAllergies (id, body) {
     allergies_id: body.allergies_id
   }
 
-  console.log('DATA TO POST ALLERGIES IS: ', data)
+  
   return db('users_allergies')
     .insert(data)
     .returning('*')
@@ -46,11 +46,10 @@ function updateProfile (id, body) {
       img_URL: body.img_URL,
       updated_at: new Date()
     })
-  returning('*')
+  .returning('*')
 }
 
 function updateProfileAllergies (id, body) {
-  console.log('ITEM CHECK: ', body)
   let allergies = body.allergies
 
   const allergyData = allergies.map((a) => {

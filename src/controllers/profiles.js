@@ -30,10 +30,9 @@ async function getProfileAllergies (req, res, next) {
   try {
     const token = parseToken(req.headers.authorization)
     const userId = token.sub.id
-    // console.log('IN GET USERPROFILEALLERGIES WITH TOKEN ID: ', userId)
+    
     const data = await model.getProfilesAllergies(userId)
 
-    console.log('GETTING APROF ALERGY DATA:!!!!!!!!!!!!!!!!!', data)
 
     res.status(200).json({
       data
@@ -64,7 +63,6 @@ async function postProfileAllergies (req, res, next) {
 
 async function updateProfileAllergies (req, res, next) {
   try {
-    console.log('PASSING update profiles all DATA: ', req.body)
     const token = parseToken(req.headers.authorization)
     const userId = token.sub.id
     const data = await model.updateProfileAllergies(userId, req.body)

@@ -2,7 +2,7 @@ const model = require('../models/allergies')
 
 async function getAllAllergies (req, res, next) {
   try {
-    console.log('IN ACTIONS TO REQ ALL ALLERGIES: ')
+   
     const data = await model.getAllAllergies()
     res.status(200).json({
       data

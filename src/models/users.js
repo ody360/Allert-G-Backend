@@ -21,8 +21,6 @@ async function create ({ password, medhx, medication, allergies, allergies_id, i
 }
 
 async function addUserAllergies (users_id, allergies_id) {
-  console.log('ABOUT TO POST NEW USER ALLERGIES: ', users_id, allergies_id)
-
   return db('users_allergies')
     .insert({ users_id, allergies_id })
     .returning('*')

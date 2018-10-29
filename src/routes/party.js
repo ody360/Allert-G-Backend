@@ -6,7 +6,8 @@ router.get('/', auth.isLoggedIn, ctrl.getParty)
 router.get('/all/:partyId', auth.isLoggedIn, ctrl.getPartyMembers)
 router.get('/all', auth.isLoggedIn, ctrl.getAllParties)
 router.get('/:id', ctrl.getMembersId)
-router.delete('/all/:partyId', auth.isLoggedIn, ctrl.deleteParty);
-router.post('/', auth.isLoggedIn, ctrl.createParty)
+router.delete('/all/:partyId', auth.isLoggedIn, ctrl.deleteParty)
+router.post('/', ctrl.createParty)
+router.put('/all/:partyId', ctrl.updatePartyMembers)
 
 module.exports = router
