@@ -29,13 +29,13 @@ function postProfileAllergies (id, body) {
     allergies_id: body.allergies_id
   }
 
-  
   return db('users_allergies')
     .insert(data)
     .returning('*')
 }
 
 function updateProfile (id, body) {
+  console.log('IN UPDATE PROFILE WOOOOOOOOOT', id, body)
   return db('users')
     .where('users.id', id)
     .update({
@@ -44,15 +44,17 @@ function updateProfile (id, body) {
       emergency1: body.emergency1,
       emergency2: body.emergency2,
       img_URL: body.img_URL,
-      updated_at: new Date()
     })
-  .returning('*')
+    .returning('*')
+    .then((res) => {
+      console.log('UPDPROFILEDB RES IS: ', res)
+    })
 }
 
 function updateProfileAllergies (id, body) {
-  let allergies = body.allergies
+  console.log('IN FRICKIN ALLERGY', body)
 
-  const allergyData = allergies.map((a) => {
+  const allergyData = body.map((a) => {
     return { users_id: id, allergies_id: a }
   })
   console.log('ALLERGY DATA UPDATED: ', allergyData)

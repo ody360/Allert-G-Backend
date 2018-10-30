@@ -10,20 +10,24 @@ function createToken (id) {
 }
 
 function parseToken (authToken) {
-  const token = authToken.split('Bearer ')[1]
+  console.log('IN PARSETOKEN RECEIVING: ', authToken);
+  const token = authToken && authToken.split('Bearer ')[1]
+
+  console.log('TOKEN BEFORE VERIFY!!!', token)
   return verify(token, SECRET_KEY)
 }
 
 function isLoggedIn (req, res, next) {
   
   try {
+    console.log('ISLOGGED IN? ', req.headers)
     parseToken(req.headers.authorization)
     next()
   } catch (e) {
     console.log('E: ', e)
     next({
       status: 401,
-      error: `Session has expired. Please login again.`
+      error: `Session has expired. Please login again.: ${e}`
     })
   }
 }
@@ -50,7 +54,7 @@ async function isAuthorized (req, res, next) {
   } catch (e) {
     next({
       status: 401,
-      error: `Session has expired. Please login again.`
+      error: `Session has expired. Please login again: ${e}`
     })
   }
 }
