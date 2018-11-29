@@ -72,7 +72,7 @@ function updateMedHxs (id, body) {
   return db('medhx')
     .where('users_id', id)
     .update({
-      medhx: body,
+      medhx: body.medhx,
       updated_at: new Date()
     })
     .returning('*')
@@ -82,7 +82,7 @@ function updateMeds (id, body) {
   return db('medication')
     .where('users_id', id)
     .update({
-      medication: body,
+      medication: body.medication,
       updated_at: new Date()
     })
     .returning('*')

@@ -99,6 +99,7 @@ async function updateMedHxs (req, res, next) {
     const token = parseToken(req.headers.authorization)
 		const userId = token.sub.id
     const data = await model.updateMedHxs(userId, req.body)
+    console.log('YUPPPPPP', data)
 		res.status(200).json({
       data
     })

@@ -10,17 +10,14 @@ function createToken (id) {
 }
 
 function parseToken (authToken) {
-  console.log('IN PARSETOKEN RECEIVING: ', authToken);
   const token = authToken && authToken.split('Bearer ')[1]
 
-  console.log('TOKEN BEFORE VERIFY!!!', token)
   return verify(token, SECRET_KEY)
 }
 
 function isLoggedIn (req, res, next) {
   
   try {
-    console.log('ISLOGGED IN? ', req.headers)
     parseToken(req.headers.authorization)
     next()
   } catch (e) {
